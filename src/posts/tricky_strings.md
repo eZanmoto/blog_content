@@ -230,7 +230,7 @@ Ignoring the escaping that was added for Python's sake, this string is stored as
 `x = '\\\'`. In this test case, the first pair of backslashes should "cancel
 out", and the third backslash should escape the final `'`. As such, the string
 is never closed, and so the final boundary index of this string should be
-considered to be "in a string". However, the current `is_in_strs()`
+considered to be "in a string". However, the current `is_likely_in_str()`
 implementation gives us the opposite result in this case. So the next thing is
 to actually keep a record of whether the current character is escaped or not:
 
