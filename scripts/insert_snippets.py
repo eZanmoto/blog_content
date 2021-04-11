@@ -26,8 +26,6 @@ import sys
 
 
 def main(argv):
-    src='posts/tricky_strings_wip.md'
-    tgt='target/posts/tricky_strings_wip.md'
     if len(argv) > 3:
         fatal("usage: {} <file-path> [--skip-checksum]".format(argv[0]))
 
@@ -39,7 +37,12 @@ def main(argv):
             fatal("usage: {} <file-path> [--skip-checksum]".format(argv[0]))
         skip_checksum = True
 
-    err = print_lines(file_path, skip_checksum)
+    try:
+        with open(file_path) as f:
+            err = print_lines(f, skip_checksum)
+    except FileNotFoundError:
+        fatal("couldn't open '{}': file not found".format(file_path))
+
     if err is not None:
         (line_num, err_msg) = err
         fatal("{}:{}: {}".format(file_path, line_num, err_msg))
@@ -50,20 +53,19 @@ def fatal(msg):
     sys.exit(1)
 
 
-def print_lines(file_path, skip_checksum):
-    with open(file_path) as f:
-        cur_line_num = 1
-        for line in f:
-            output = line
-            if line.startswith(MARKER):
-                output, err_msg = get_snippet(
-                    line[len(MARKER):].rstrip('\n'),
-                    skip_checksum,
-                )
-                if err_msg is not None:
-                    return (cur_line_num, err_msg)
-            print(output, end='')
-            cur_line_num += 1
+def print_lines(file_stream, skip_checksum):
+    cur_line_num = 1
+    for line in file_stream:
+        output = line
+        if line.startswith(MARKER):
+            output, err_msg = get_snippet(
+                line[len(MARKER):].rstrip('\n'),
+                skip_checksum,
+            )
+            if err_msg is not None:
+                return (cur_line_num, err_msg)
+        print(output, end='')
+        cur_line_num += 1
     return None
 
 
@@ -111,8 +113,12 @@ def parse_snippet_line(line):
 
 
 def read_snippet(fpath, start_line, num_lines):
-    with open(fpath) as snippet_file:
-        snippet_lines = [ln for ln in snippet_file]
+    try:
+        with open(fpath) as snippet_file:
+            snippet_lines = [ln for ln in snippet_file]
+    except FileNotFoundError:
+        msg = "couldn't open snippet at '{}': file not found".format(fpath)
+        return (None, msg)
 
     start = start_line - 1
     end = start + num_lines
