@@ -54,3 +54,18 @@ require a call to `make`. `make` can be called automatically whenever content in
 
 Note that automatic browser refreshes aren't currently supported; see
 `scripts/serve.sh` for more information.
+
+### `make check_hello`
+
+In general, the `check` target in the `Makefile` is run as part of a regular
+`make` run, which runs all `check_*` targets. However, one exception to this is
+the `check_hello`, and it isn't run by default because it requires Docker to be
+available as part of the test execution, and the build environment doesn't
+contain a Docker client. While it's possible to [safely run a Docker client
+within a
+container](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/#the-socket-solution),
+the general approach to this requires special handling in order to correctly
+address bind-mounted volumes, which would complicate the sample code presented
+in the blog. As such, this simplified approach is taken where the `check_hello`
+target is expected to be run in an environment that has Docker available,
+separately to the regular build environment.

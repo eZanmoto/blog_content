@@ -1,0 +1,16 @@
+# Copyright 2021 Sean Kelleher. All rights reserved.
+# Use of this source code is governed by an MIT
+# licence that can be found in the LICENCE file.
+
+version: '2.4'
+
+services:
+    hello.seankelleher.local:
+        image: nginx:1.19.7-alpine
+        ports:
+          - 8080:8080
+        volumes:
+          - ./configs/hello.conf:/etc/nginx/conf.d/hello.conf:ro
+
+    hello:
+        image: ezanmoto/hello

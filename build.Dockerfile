@@ -10,7 +10,7 @@ RUN \
         --no-cache \
         entr=4.2-r0 \
         make=4.2.1-r2 \
-        python3=3.7.7-r1 \
+        python3=3.7.10-r0 \
     && npm install \
         --global \
         @11ty/eleventy@0.11.1 \

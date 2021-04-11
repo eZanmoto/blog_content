@@ -69,3 +69,10 @@ check_py_snippets:
 		python3 "$$py" \
 			|| exit 1 ; \
 	done
+
+.PHONY: check_hello
+check_hello:
+	( \
+		cd '$(src_dir)/code/hello' \
+			&& bash scripts/test.sh \
+	)
