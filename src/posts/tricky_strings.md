@@ -66,7 +66,7 @@ Straightforward and simple, but borderline unusable; writing such definitions by
 hand would be tedious and error prone, and figuring out what those lists should
 look like in the case of a bug would be likely to just add oil to a flame. Even
 a more compact representation doesn't quite do it, since the misalignment
-between boundary indexes versus actual indexes still obscures the intent:
+between boundary indices versus actual indices still obscures the intent:
 
 ```python
 !snippet code/tricky_strings.py 36 4 R241w0XUqgnqTdNZ3gQtSn/5C9I=
