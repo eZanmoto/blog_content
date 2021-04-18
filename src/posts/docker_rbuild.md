@@ -15,7 +15,7 @@ for projects, where in the past developers had to rely on setting up the correct
 environment manually in order to get a successful build. One big drawback of
 `docker build`, however, is that it can be very costly in terms of storage when
 running it multiple times, as each run of the command will generally leave
-unnamed images around.  Cleanup can be straightforward, but requires continual
+unnamed images around. Cleanup can be straightforward, but requires continual
 pruning.
 
 The need to remove unused images is particularly felt when trying to develop and
