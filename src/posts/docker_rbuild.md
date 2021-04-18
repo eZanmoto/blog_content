@@ -86,13 +86,13 @@ One way to work around this is to encapsulate the usage with a Dockerfile, like
 `markdownlint.Dockerfile`:
 
 ```dockerfile
-!snippet code/hello/markdownlint.Dockerfile 5 5 P+lH5j0SUce3cBFlsM5f1Gu1XGI=
+<!snippet code/hello/markdownlint.Dockerfile 5 5 P+lH5j0SUce3cBFlsM5f1Gu1XGI=>
 ```
 
 `markdownlint.sh`:
 
 ```bash
-!snippet code/hello/scripts/markdownlint.sh 5 16 dNnr7tu06sAgKUU9ZccjfJgYIv4=
+<!snippet code/hello/scripts/markdownlint.sh 5 16 dNnr7tu06sAgKUU9ZccjfJgYIv4=>
 ```
 
 This addresses some of the above issues:
@@ -126,7 +126,7 @@ running `ezanmoto/blog_content.markdownlint`:
 
 <!-- markdownlint-disable line-length -->
 ```bash
-!snippet code/hello/scripts/markdownlint_rbuild.sh 15 12 czZUDPBvbIih+XmHhL1dPhRNrCY=
+<!snippet code/hello/scripts/markdownlint_rbuild.sh 15 12 czZUDPBvbIih+XmHhL1dPhRNrCY=>
 ```
 <!-- markdownlint-enable -->
 
@@ -154,14 +154,14 @@ called:
 `docker-compose.yml`:
 
 ```yaml
-!snippet code/hello/docker-compose.yml 5 12 QCHF5t+ZtmBU5UB1JkmNPvUvaP0=
+<!snippet code/hello/docker-compose.yml 5 12 QCHF5t+ZtmBU5UB1JkmNPvUvaP0=>
 ```
 
 `scripts/docker_compose_up_build.sh`:
 
 <!-- markdownlint-disable line-length -->
 ```bash
-!snippet code/hello/scripts/docker_compose_up_build.sh 5 11 QsuxXO/EyeQHxOjpqhGpXiGRy6A=
+<!snippet code/hello/scripts/docker_compose_up_build.sh 5 11 QsuxXO/EyeQHxOjpqhGpXiGRy6A=>
 ```
 <!-- markdownlint-enable -->
 

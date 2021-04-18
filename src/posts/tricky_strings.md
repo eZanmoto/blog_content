@@ -20,20 +20,20 @@ trying to avoid with this check is accidentally flagging a line as containing a
 trailing comment when the comment marker actually occurs within a string:
 
 ```python
-!snippet code/tricky_strings.py 5 2 DjFd4wPGlhOmrFlLPENwYZcVldg=
+<!snippet code/tricky_strings.py 5 2 DjFd4wPGlhOmrFlLPENwYZcVldg=>
 ```
 
 Thus began my effort to reach the current implementation of
 `is_likely_in_str()`:
 
 ```python
-!snippet code/tricky_strings.py 8 6 3DibHemVqAt044yHGACx37FoMto=
+<!snippet code/tricky_strings.py 8 6 3DibHemVqAt044yHGACx37FoMto=>
 ```
 
 This seemed to have a fairly trivial implementation to start off with:
 
 ```python
-!snippet code/tricky_strings.py 18 6 ZmjCVmlFfZ1iPjDww0W/7BXMFTA=
+<!snippet code/tricky_strings.py 18 6 ZmjCVmlFfZ1iPjDww0W/7BXMFTA=>
 ```
 
 And it worked! It purposefully doesn't handle some obvious cases such as comment
@@ -59,7 +59,7 @@ booleans, where each boolean represented whether `is_likely_in_str()` should
 return `True` for that index:
 
 ```python
-!snippet code/tricky_strings.py 27 5 /LMMX7rvc6CvVuijOYHYjh8Vfao=
+<!snippet code/tricky_strings.py 27 5 /LMMX7rvc6CvVuijOYHYjh8Vfao=>
 ```
 
 Straightforward and simple, but borderline unusable; writing such definitions by
@@ -69,7 +69,7 @@ a more compact representation doesn't quite do it, since the misalignment
 between boundary indices versus actual indices still obscures the intent:
 
 ```python
-!snippet code/tricky_strings.py 36 4 R241w0XUqgnqTdNZ3gQtSn/5C9I=
+<!snippet code/tricky_strings.py 36 4 R241w0XUqgnqTdNZ3gQtSn/5C9I=>
 ```
 
 So... Abstract it! We can process the test case with a function to produce our
@@ -78,14 +78,14 @@ clear at a glance what sections we expect to be inside a string and what ones
 should be outside:
 
 ```python
-!snippet code/tricky_strings.py 43 1 +1wEbkDqdByO6OYwG39EtTg/Nlg=
+<!snippet code/tricky_strings.py 43 1 +1wEbkDqdByO6OYwG39EtTg/Nlg=>
 ```
 
 And here we arrive at the first simple string problem that turned out to be
 surprisingly difficult:
 
 ```python
-!snippet code/tricky_strings.py 46 6 Qtpm3CNsMOO2wNljSfpf1nvaJcs=
+<!snippet code/tricky_strings.py 46 6 Qtpm3CNsMOO2wNljSfpf1nvaJcs=>
 ```
 
 The First Hurdle
@@ -97,14 +97,14 @@ character. I started with the boundary condition of `[False]` since it's assumed
 that a line starts off by not being within a string:
 
 ```python
-!snippet code/tricky_strings.py 56 8 FuLGMzwXkuB3uvO9dAy5Y+RMsKI=
+<!snippet code/tricky_strings.py 56 8 FuLGMzwXkuB3uvO9dAy5Y+RMsKI=>
 ```
 
 Ah, but how naive programming at 9:00 PM on a Thursday can make you when you're
 no longer in college:
 
 ```python
-!snippet code/tricky_strings.py 65 4 cG7TqJYWlP3rSpDcwFpYek14rH8=
+<!snippet code/tricky_strings.py 65 4 cG7TqJYWlP3rSpDcwFpYek14rH8=>
 ```
 
 Moreover, `is_in_strs(["x = '", "", "'"])` will give us all `False`s! So I
@@ -125,7 +125,7 @@ few subtleties to this problem that I should take into consideration:
 The next iteration focused on the issue with the empty substring:
 
 ```python
-!snippet code/tricky_strings.py 81 6 wP/XM+7KXOyfvEWV9Zdizn50Rpo=
+<!snippet code/tricky_strings.py 81 6 wP/XM+7KXOyfvEWV9Zdizn50Rpo=>
 ```
 
 One small improvement here was simplifying
@@ -169,21 +169,21 @@ string, add 1 to the number of `T`s it has, otherwise subtract 1 from its `F`s."
 This gave me:
 
 ```python
-!snippet code/tricky_strings.py 93 8 C7yFfnhwJY0QfbCpn16rSF32q9I=
+<!snippet code/tricky_strings.py 93 8 C7yFfnhwJY0QfbCpn16rSF32q9I=>
 ```
 
 Fairly straightforward, but luckily a test alerted me to an edge case that I
 overlooked:
 
 ```python
-!snippet code/tricky_strings.py 102 4 cmhdcHK52Pecmyq2mz+HD4Ie2uM=
+<!snippet code/tricky_strings.py 102 4 cmhdcHK52Pecmyq2mz+HD4Ie2uM=>
 ```
 
 I'll admit it though; my fix for this was just the first thing to come to my
 head that I thought would get tests passing:
 
 ```python
-!snippet code/tricky_strings.py 116 3 khOUQ7ICPH8iK8Ecg4k7vhDm2qw=
+<!snippet code/tricky_strings.py 116 3 khOUQ7ICPH8iK8Ecg4k7vhDm2qw=>
 ```
 
 Thankfully (or, suspiciously?) this passed all the tests. I ignored the
@@ -197,7 +197,7 @@ function (the trailing comments here are only presented for clarification and
 aren't in the actual source code!):
 
 ```python
-!snippet code/tricky_strings.py 122 4 0yT/GSwsAaO35kOHquJKthx/i+Q=
+<!snippet code/tricky_strings.py 122 4 0yT/GSwsAaO35kOHquJKthx/i+Q=>
 ```
 
 Out of the Woods?
@@ -208,7 +208,7 @@ moved on to the more straightforward implementation of the original
 `is_likely_in_str()` function:
 
 ```python
-!snippet code/tricky_strings.py 127 18 XAGS1qPO7LMj45i+ozRIZpEnvos=
+<!snippet code/tricky_strings.py 127 18 XAGS1qPO7LMj45i+ozRIZpEnvos=>
 ```
 
 I felt this to be a fairly neat implementation, and the logic matched my
@@ -223,7 +223,7 @@ try. One test case was very helpful in pointing out the fact that I had
 completely overlooked tracking of the current `escaped` state in the loop:
 
 ```python
-!snippet code/tricky_strings.py 150 1 JY2pbuEWI/Xr/UQOjnqTYbth0EY=
+<!snippet code/tricky_strings.py 150 1 JY2pbuEWI/Xr/UQOjnqTYbth0EY=>
 ```
 
 Ignoring the escaping that was added for Python's sake, this string is stored as
@@ -235,13 +235,13 @@ implementation gives us the opposite result in this case. So the next thing is
 to actually keep a record of whether the current character is escaped or not:
 
 ```python
-!snippet code/tricky_strings.py 157 20 408i3SHRwgpgwYB/qLR3dZ7ArA8=
+<!snippet code/tricky_strings.py 157 20 408i3SHRwgpgwYB/qLR3dZ7ArA8=>
 ```
 
 Three more failures...
 
 ```python
-!snippet code/tricky_strings.py 179 3 Vr4M/JBY8IFH8fMNqr9fRl0kfLY=
+<!snippet code/tricky_strings.py 179 3 Vr4M/JBY8IFH8fMNqr9fRl0kfLY=>
 ```
 
 The end of all of these test cases should be considered to be in a string, but
@@ -257,7 +257,7 @@ solution that I had set out to achieve, by taking the escape check out of the
 delimiter check:
 
 ```python
-!snippet code/tricky_strings.py 210 18 u4uS0nlcijECPFrFv8FHbp06o5A=
+<!snippet code/tricky_strings.py 210 18 u4uS0nlcijECPFrFv8FHbp06o5A=>
 ```
 
 Finally, my tests were figuratively green. The only thing left to do was to
@@ -290,13 +290,13 @@ observed earlier. That is, if we had an input like `["x = ", "'abc", "'"]`, then
 the final `is_in_strs()` could be simplified to the following:
 
 ```python
-!snippet code/tricky_strings.py 231 7 XL4JaEE++1UOAf38Ixyb5sB+dOc=
+<!snippet code/tricky_strings.py 231 7 XL4JaEE++1UOAf38Ixyb5sB+dOc=>
 ```
 
 Or even the following, at the expense of readability:
 
 ```python
-!snippet code/tricky_strings.py 242 3 Q5W0FOeSznWo9EMhSRHYm205Xqg=
+<!snippet code/tricky_strings.py 242 3 Q5W0FOeSznWo9EMhSRHYm205Xqg=>
 ```
 
 If we then consider the desired representation (`["x = '", "abc", "'"]`) in
