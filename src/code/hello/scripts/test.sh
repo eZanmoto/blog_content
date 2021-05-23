@@ -9,11 +9,38 @@ build_img="$proj.build"
 run_img="$proj"
 
 main() {
-    bash scripts/markdownlint_rbuild.sh README.md
+    {
+        bash scripts/markdownlint_rbuild.sh README.md
 
-    # NOTE `bash scripts/markdownlint_rbuild.sh` must be run before this command
-    # in order to ensure that the `ezanmoto/hello.markdownlint` image exists.
-    bash scripts/markdownlint.sh README.md
+        # NOTE `bash scripts/markdownlint_rbuild.sh` must be run before this
+        # command in order to ensure that the `ezanmoto/hello.markdownlint`
+        # image exists.
+        bash scripts/markdownlint.sh README.md
+    }
+
+    {
+        bash scripts/with_build_env_basic.sh \
+            bash -c '! (gofmt -s -d cmd | grep "") && touch target/test'
+
+        ls -l target/test \
+            | grep root
+
+        bash scripts/with_build_env_dev.sh \
+            bash -c '! (gofmt -s -d cmd | grep "") && rm target/test'
+
+        bash scripts/with_build_env_user.sh \
+            bash -c 'touch target/test'
+
+        rm target/test
+
+        bash scripts/with_build_env_go.sh \
+            bash -c '! (gofmt -s -d cmd | grep "")'
+
+        docker volume \
+            rm \
+            'ezanmoto.hello.tmp_cache' \
+            'ezanmoto.hello.pkg_cache'
+    }
 
     {
         bash scripts/docker_rbuild.sh \

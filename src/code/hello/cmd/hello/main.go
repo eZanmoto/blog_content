@@ -5,13 +5,13 @@
 package main
 
 import (
-    "fmt"
-    "net/http"
-    "os"
-    "os/exec"
+	"fmt"
+	"net/http"
+	"os"
+	"os/exec"
 
-    "github.com/gorilla/handlers"
-    "github.com/gorilla/mux"
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
 )
 
 func main() {
