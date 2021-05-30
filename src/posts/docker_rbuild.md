@@ -40,7 +40,7 @@ I wrote `docker_rbuild.sh` ("Docker replace build") to approximate the idea of
 `docker build --replace` by making use of the build cache:
 
 ```bash
-!snippet code/hello/scripts/docker_rbuild.sh 5 26 qBe5zVAbhEreCGvw/UiCsxrdYfM=
+<!snippet code/hello/scripts/docker_rbuild.sh 5 26 qBe5zVAbhEreCGvw/UiCsxrdYfM=>
 ```
 
 This tags the current copy of the image so that it can be reused for caching
